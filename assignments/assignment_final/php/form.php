@@ -78,8 +78,12 @@ $elementsArr = [
 /*THIS FUNCTION CAN BE CALLED TO ADD DATA TO THE DATABASE */
 function addData(){
   global $elementsArr;  
+
+  require_once('classes/contactProcess.php');
+  $contactProcess = new contactProcess();
+  $output = $contactProcess->addContact();
   /* IF EVERYTHING WORKS ADD THE DATA HERE TO THE DATABASE HERE USING THE $_POST SUPER GLOBAL ARRAY */
-      //print_r($_POST);
+      print_r($_POST);
     
       /*ONCE THE DATA HAS BEEN ADDED THE RETURN STATEMENT WILL FIRE.  */
 
@@ -95,7 +99,7 @@ $options = $stickyForm->createOptions($elementsArr['state']);
 
 /* THIS IS A HEREDOC STRING WHICH CREATES THE FORM AND ADD THE APPROPRIATE VALUES AND ERROR MESSAGES */
 $form = <<<HTML
-    <form method="post" action="index.php">
+    <form method="post" action="index.php?page=form">
     <div class="form-group">
       <label for="name">Name (letters only){$elementsArr['name']['errorOutput']}</label>
       <input type="text" class="form-control" id="name" name="name" value="{$elementsArr['name']['value']}" >
@@ -111,6 +115,7 @@ $form = <<<HTML
         $options
       </select>
     </div>
+  
 
     <p>Please check all financial options (you must check at least one):{$elementsArr['financial']['errorOutput']}</p>
     <div class="form-check form-check-inline">

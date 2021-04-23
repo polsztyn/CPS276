@@ -17,19 +17,21 @@ if(isset($_GET)){
 		//HEADER REDIRECT HERE
 		// A GET has been requested without parameter page = "display" or "form" being set to 
 		
-		
+		/*
 		require_once('php/form.php');
 		$result = init();
-		//header("Location: http://178.128.157.194/CPS276_REPOSITORY/assignments/assignment_final/index.php?page=form");
+		*/
+		header("Location: http://178.128.157.194/CPS276_REPOSITORY/assignments/assignment_final/index.php?page=form");
 	    //header("Location: http://178.128.157.194/CPS276_REPOSITORY/assignments/assignment_final/index.php?page=form",true,301);
 	}
 }
-
 else {
 	//HEADER REDIRECT HERE
 	// This is where a post would land.
 
+	header("Location: http://178.128.157.194/CPS276_REPOSITORY/assignments/assignment_final/index.php?page=form");
 	// is this a post from the dataEntry form?
+	/*
 	if(isset($_POST['submit'])){
 
 		// is this a post from the dispalyData form?
@@ -40,6 +42,7 @@ else {
 		require_once('php/displayRecords.php');
 		$result= initFormDisplay();
 	}	
+	*/
 }
 ?>
 
