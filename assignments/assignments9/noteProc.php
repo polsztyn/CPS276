@@ -28,6 +28,7 @@ class noteProc  extends PdoMethods {
          
                     
 
+        
 		//CREATE AN INSTANCE OF THE PDOMETHODS CLASS
 		$pdo = new PdoMethods();
         

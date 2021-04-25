@@ -3,30 +3,36 @@
 function initFormDisplay() {
     $debug="";
     $output="";
+
+    require_once('classes/contactProcess.php');
+    $contactProcess = new contactProcess();
+
+
+    $deleteStatus = "";
+    if(isset($_POST['delete'])){
+        $deleteStatus = $contactProcess->deleteContacts();
+    }
+    else {
+        $deleteStatus = "";
+    }
+
+    $output = $contactProcess->getContacts();
+
 $form = <<<HTML
 
 <main class="container">
-
-      <h1>Add Names</h1>
        
       
       <form action="index.php?page=display" method="post">
       
       <div class="form-group">
-        <input type="submit" class="btn btn-primary" name="addName" id="s1" value="Add Name" >
-        <input type="submit" class="btn btn-primary" name="clearNames" id="s2" value="Clear Names" >
+        <input type="submit" class="btn btn-danger" name="delete" id="s1" value="Delete" >
       </div>     
       
-      
-      <div class="form-group">
-        <label for="fullName">Enter Name</label>
-        <input type="text" class="form-control" name="fullName" id="fullName" value="">
-      </div>
 
      
       <div class="form-group">
-        <label for="listOfNames">List of Names</label>
-        <textarea name="listOfNames" type="password" class="form-control" id="listOfNames" rows="4" cols="50"><?php echo $output?></textarea>
+        {$output}
       </div>
 
       
@@ -46,7 +52,7 @@ $form = <<<HTML
 HTML;
 
 
-    $result = ["<p>You called initForm Display!!!!</p>",$form];
+    $result = [$deleteStatus,$form];
     return($result);
 }
 
