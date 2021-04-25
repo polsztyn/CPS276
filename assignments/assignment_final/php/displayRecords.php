@@ -10,7 +10,7 @@ function initFormDisplay() {
 
     $deleteStatus = "";
     if(isset($_POST['delete'])){
-        $deleteStatus = $contactProcess->deleteContacts();
+        $deleteStatus = $contactProcess->deleteContacts2($_POST);
     }
     else {
         $deleteStatus = "";

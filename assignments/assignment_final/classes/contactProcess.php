@@ -160,16 +160,16 @@ class contactProcess  extends PdoMethods {
     }
 
 
-	public function deleteNames($post){
+	public function deleteContacts2($post){
 		$error = false;
 		if(isset($post['inputDeleteChk'])){
 			foreach($post['inputDeleteChk'] as $id){
 				$pdo = new PdoMethods();
 
-				$sql = "DELETE FROM short_names WHERE id=:id";
+				$sql = "DELETE FROM contacts WHERE contact_name=:id";
 				
 				$bindings = [
-					[':id', $id, 'int'],
+					[':id', $id, 'str'],
 				];
 
 
