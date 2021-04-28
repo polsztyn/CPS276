@@ -11,6 +11,9 @@ class Validation{
 		switch($regex){
 			case "name": return $this->name($value); break;
 			case "phone": return $this->phone($value); break;
+			case "address": return $this->address($value); break;
+			case "email": return $this->email($value); break;
+			case "dob": return $this->dob($value); break;
 		}
 	}
 	/* THE REST OF THE FUNCTIONS ARE THE INDIVIDUAL REGULAR EXPRESSION FUNCTIONS*/
@@ -18,6 +21,22 @@ class Validation{
 		$match = preg_match('/^[a-z-\' ]{1,50}$/i', $value);
 		return $this->setError($match);
 	}
+
+	private function email($value){
+		$match = preg_match('/^[a-zA-Z0-9 \_\.\-]{1,50}\@[a-zA-Z0-9 \_\.\-]{1,50}\.[a-zA-Z0-9 \.\-]{1,10}$/i', $value);
+		return $this->setError($match);
+	}
+
+	private function address($value){
+		$match = preg_match('/^[a-zA-Z0-9 \.\-]{1,50}$/i', $value);
+		return $this->setError($match);
+	}
+
+	private function dob($value){
+		$match = preg_match('/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/i', $value);
+		return $this->setError($match);
+	}
+
 	private function phone($value){
 		$match = preg_match('/\d{3}\.\d{3}.\d{4}/', $value);
 		return $this->setError($match);
